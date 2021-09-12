@@ -22,7 +22,37 @@ import { NotImplementedError } from '../extensions/index.js';
  * }
  *
  */
-export default function getDNSStats(/* domains */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getDNSStats( domains ) {
+
+  const obj = {
+
+  }
+
+  for (let i = 0; i < domains.length; i++) {
+    let tempDomain = domains[i].split('.').reverse();
+    let length = tempDomain.length;
+
+    for (let j = 0; j < length; j++) {
+
+      let tempDNS;
+      if (tempDomain.length == 1) {
+        tempDNS = `.${tempDomain}`
+      }
+      
+      tempDNS = `.${tempDomain.join('.')}`
+
+      if (!Object.keys(obj).includes(tempDNS)) {
+        obj[tempDNS] = 1;
+      } else {
+        obj[tempDNS] += 1;
+      }
+
+
+
+      tempDomain.splice(tempDomain.length - 1 , 1);
+
+      
+    }
+  }
+    return obj;
 }

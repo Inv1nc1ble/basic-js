@@ -1,16 +1,31 @@
-import { NotImplementedError } from '../extensions/index.js';
 
-/**
- * Given a string, return its encoding version.
- *
- * @param {String} str
- * @return {String}
- *
- * @example
- * For aabbbc should return 2a3bc
- *
- */
-export default function encodeLine(/* str */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+export default function encodeLine( str ) {
+
+  let prevValue = '';
+  let prevCount = 1;
+  let res = '';
+  
+  for (let i = 0; i <= str.length ; i++) {
+      
+      if (str[i] !== prevValue) {
+        
+
+        if (prevCount == 1) {
+          res+=prevValue;
+        } else {
+          res+=`${prevCount}${prevValue}`
+        }
+
+        prevValue = str[i];
+        prevCount = 1;
+      }
+
+      else {
+        prevCount++;
+      }
+
+  }
+  return res;
+
 }
